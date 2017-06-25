@@ -72,16 +72,16 @@ namespace SDWebService.Controllers
         // GET: Post/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Post.Find(id);
+            Post post = postRepository.GetById(id.Value);
             if (post == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdUsuario = new SelectList(db.Usuario, "Id", "Nome", post.IdUsuario);
+            ViewBag.IdUsuario = new SelectList(usuarioRepository.GetAll(), "Id", "Nome", post.IdUsuario);
             return View(post);
         }
 
