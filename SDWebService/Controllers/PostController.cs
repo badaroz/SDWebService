@@ -92,22 +92,22 @@ namespace SDWebService.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
+                postRepository.Update(post);
+                postRepository.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdUsuario = new SelectList(db.Usuario, "Id", "Nome", post.IdUsuario);
+            ViewBag.IdUsuario = new SelectList(usuarioRepository.GetAll(), "Id", "Nome", post.IdUsuario);
             return View(post);
         }
 
         // GET: Post/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (!id.HasValue)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Post.Find(id);
+            Post post = postRepository.GetById(id.Value); ;
             if (post == null)
             {
                 return HttpNotFound();
@@ -120,27 +120,28 @@ namespace SDWebService.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Post post = db.Post.Find(id);
-            db.Post.Remove(post);
-            db.SaveChanges();
+
+            postRepository.Remove(id);
+            postRepository.SaveChanges();
             return RedirectToAction("Index");
         }
-        [HttpGet]
-        public IQueryable<Post> GetByHashTag(string hashTag)
-        {
-            return db.Post.Where(x => x.Conteudo.Contains(hashTag));
-        }
-        [HttpGet]
-        public IQueryable<Post> GetByUser(int idUsuario)
-        {
-            return db.Post.Where(x => x.IdUsuario == idUsuario);
-        }
+        //[HttpGet]
+        //public IQueryable<Post> GetByHashTag(string hashTag)
+        //{
+        //    return db.Post.Where(x => x.Conteudo.Contains(hashTag));
+        //}
+        //[HttpGet]
+        //public IQueryable<Post> GetByUser(int idUsuario)
+        //{
+        //    return db.Post.Where(x => x.IdUsuario == idUsuario);
+        //}
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                postRepository.Dispose();
+                usuarioRepository.Dispose();
             }
             base.Dispose(disposing);
         }
