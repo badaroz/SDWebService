@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2 h3">Incluir Usuário</div>
+  </div>
+  <div class="row">
+    <form (ngSubmit)="add()" [formGroup]="formGroupUsuario">
+      <div class="row">
+        <div class="danger col-xs-12 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2 h6">Campos obrigatórios(*)</div>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2" [class.has-error]="formGroupUsuario?.controls.nome.invalid && formGroupUsuario?.controls.nome.dirty">
+        <label for="nomeInput">Nome *</label>
+        <input type="text" class="form-control" formControlName="nome" id="nomeInput" placeholder="Nome" name="nome">
+        <span *ngIf="formGroupUsuario?.controls.nome.invalid && formGroupUsuario?.controls.nome.dirty" class="has-error">Preenchimento obrigatório</span>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-4" [class.has-error]="formGroupUsuario?.controls.enail.invalid && formGroupUsuario?.controls.email.dirty">
+        <label for="emailInput">Email *</label>
+        <input type="text" class="form-control" formControlName="email" id="emailInput" placeholder="Sobrenome" name="Email">
+        <span *ngIf="formGroupUsuario?.controls.email.invalid && formGroupUsuario?.controls.email.dirty" class="has-error">Preenchimento obrigatório</span>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-2" [class.has-error]="formGroupUsuario?.controls.senha.invalid && formGroupUsuario?.controls.senha.dirty">
+        <label for="senhaInput">Senha *</label>
+        <input type="password" class="form-control" formControlName="senha" id="senhaInput" placeholder="Senha" name="senha">
+        <span *ngIf="formGroupUsuario?.controls.senha.invalid && formGroupUsuario?.controls.senha.dirty" class="has-error">Preenchimento obrigatório</span>
+      </div>
+      <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-4" [class.has-error]="formGroupUsuario?.controls.dataNascimento.invalid && formGroupUsuario?.controls.dataNascimento.dirty">
+        <label for="dataNascimento">Data Nascimento *</label>
+        <input type="date" class="form-control" formControlName="dataNascimento" id="dataNascimento" name="dataNascimento">
+        <span *ngIf="formGroupUsuario?.controls.dataNascimento.invalid && formGroupUsuario?.controls.dataNascimento.dirty" class="has-error">Preenchimento obrigatório</span>
+      </div>
+      
+      <div class="col-xs-12 col-sm-6 col-sm-offset-6 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2"> 
+        <hr>
+      </div>
+      <div class="col-xs-4 col-md-4 col-lg-4 col-sm-4"></div>
+      <div class="col-xs-4 col-md-4 col-lg-4 col-sm-4 text-center" >
+        <button type="submit" [disabled]="formGroupUsuario?.invalid" class="btn btn-success btn-lg">Salvar</button>
+        <button routerLink="../" class="btn btn-danger btn-lg ">Cancelar</button>
+      </div>
+      <div class="col-xs-4 col-md-4 col-lg-4 col-sm-4"></div>
+    </form>
+  </div>
+</div>

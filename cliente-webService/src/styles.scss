@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+.form-group {
+    max-height: 79px;
+    min-height: 79px;
+    margin-bottom: 5px;
+}
+
+.navbar-default .navbar-nav > li > a.active, .navbar-default .navbar-nav > li > a.active:focus, .navbar-default .navbar-nav > li > a.active:hover {
+    background-color: #DADADA;
+    font-weight: bold;
+    color: #333; 
+}
+
+hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 2px solid #C1C2C2;
+    margin: 1em 0;
+    padding: 0; 
+}
