@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SDWebService.Models;
-using System.Web.Mvc;
 using SDWebService.Repository;
+using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace SDWebService.Controllers
 {
+    //[RoutePrefix("Usuarios")]
     public class PostApiController : ApiController
     {
         private Repository<Post> repository = new Repository<Post>(new AppContext());
@@ -26,7 +27,7 @@ namespace SDWebService.Controllers
         {          
             return repository.GetAll().Where(x => x.Conteudo.Contains("#" + hashTag));
         }
-       
+
         public IQueryable<Post> GetByUser(int idUsuario)
         {
             return repository.GetAll().Where(x => x.IdUsuario == idUsuario);
@@ -59,23 +60,8 @@ namespace SDWebService.Controllers
                 return BadRequest();
             }
 
-            //db.Entry(post).State = EntityState.Modified;
-
-            try
-            {
-                //db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PostExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            repository.Update(post);
+            repository.SaveChanges();
 
             return StatusCode(HttpStatusCode.NoContent);
         }

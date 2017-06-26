@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using SDWebService.Models;
 using SDWebService.Repository;
 
 namespace SDWebService.Controllers
-{
-    [Route("api/[controller]")]
+{  
     public class PostController : Controller
     {
 
