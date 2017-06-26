@@ -56,25 +56,9 @@ namespace SDWebService.Controllers
             {
                 return BadRequest();
             }
-
-            //db.Entry(usuario).State = EntityState.Modified;
-
-            //try
-            //{
-            //    db.SaveChanges();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!UsuarioExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
+            usuarioRepository.Update(usuario);
+            usuarioRepository.SaveChanges();
+            
             return StatusCode(HttpStatusCode.NoContent);
         }
 
