@@ -12,4 +12,14 @@ export class UsuarioService {
         return this.http.get('http://localhost:51256/api/UsuarioApi')
             .map((response: Response) => response.json());
     }
+
+    salvarUsuario(usuario: Usuario): Observable<any>{
+        return this.http.post('http://localhost:51256/api/UsuarioApi', JSON.stringify(usuario))
+            .map((response: Response) => response.json());
+    }
+
+    obtemUltimoUsuarioCadastrado(): Observable<Usuario>{
+        return this.http.get('http://localhost:51256/api/UsuarioApi/GetLast')
+            .map((response: Response) => response.json());
+    }
 }

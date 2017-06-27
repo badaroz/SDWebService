@@ -1,3 +1,4 @@
+import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -13,7 +14,8 @@ export class IncluirUsuarioComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private _usuarioService: UsuarioService
   ) { 
 
     this.formGroupUsuario = this.formBuilder.group(
@@ -30,7 +32,20 @@ export class IncluirUsuarioComponent implements OnInit {
   }
 
   public add(){
-    this.router.navigate(['usuarios']);
+    this._usuarioService.salvarUsuario(this.formGroupUsuario.value)
+      .subscribe((data) => {
+        console.log("Ok", data);
+        this._usuarioService.obtemUltimoUsuarioCadastrado()
+          .subscribe((data) => {
+            console.log("Ok", data);
+            localStorage.setItem("currentUser", JSON.stringify(data));
+            this.router.navigate(['usuarios']);
+          }, (error) => {
+            console.log("Error", error);
+          });
+      }, (error) => {
+        console.log("Error", error);
+      });
   }
 
 }

@@ -1,3 +1,5 @@
+import { Usuario } from './../models/usuario';
+import { Post } from './../models/post';
 import { PostService } from './../services/post.service';
 import { AuthenticationService } from './../services/authentication.service';
 import { Router } from '@angular/router';
@@ -10,7 +12,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  title = 'app works!';
+  post: Post;
+  user: Usuario;
   tam = 14;
   
   constructor
@@ -21,7 +24,16 @@ export class InicioComponent implements OnInit {
   ) 
   { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("currentUser"));
+    this.iniciarPost();
+  }
+
+  iniciarPost() {
+    this.post = new Post();
+    this.post.usuario = this.user;
+    this.post.idUsuario = this.user.id;
+  }
 
   mudaFonte(tipo)
   {
@@ -46,7 +58,11 @@ export class InicioComponent implements OnInit {
   }
 
   salvarPost(){
-    
+    this._postService.salvarPost(this.post)
+      .subscribe(
+        (data) => { console.log("Ok", data); this.iniciarPost()},
+        (error) => { console.error("Error", Error)}  
+      )
   }
 
 }
