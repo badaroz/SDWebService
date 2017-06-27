@@ -8,12 +8,11 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using SDWebService.Models;
 using SDWebService.Repository;
-using System.Web.Mvc;
 using System.Web.Script.Serialization;
 
 namespace SDWebService.Controllers
 {
-    //[RoutePrefix("Usuarios")]
+    [RoutePrefix("api/Post")]
     public class PostApiController : ApiController
     {
         private Repository<Post> repository = new Repository<Post>(new AppContext());

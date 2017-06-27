@@ -1,3 +1,4 @@
+import { PostagemComponent } from './../postagem/postagem.component';
 import { ModalModule } from './../utils/modal/modal.module';
 import { HttpModule } from '@angular/http';
 
@@ -25,7 +26,8 @@ import { InicioComponent } from './inicio.component';
     InicioComponent,
     IncluirUsuarioComponent,
     EditarUsuarioComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    PostagemComponent
   ]
 })
 export class InicioModule { }

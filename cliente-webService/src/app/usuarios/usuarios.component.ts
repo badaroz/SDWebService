@@ -1,5 +1,6 @@
+import { Usuario } from './../models/usuario';
+import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
 
 @Component({
   selector: 'app-usuarios',
@@ -7,28 +8,22 @@ import { Http } from '@angular/http';
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
-public usuario : Usuario;
-  constructor(http : Http) {
-  http.get('api/UsuarioApi').subscribe(result=>
-   this.usuario = result.json(),)   
-   }
 
-  ngOnInit() {
+  public usuarios: Array<Usuario>;
+
+  constructor
+  (
+    private _usuarioService:UsuarioService
+  ) 
+  { 
+    this.usuarios = new Array<Usuario>();
   }
 
+  ngOnInit() {
+    this._usuarioService.obtemUsuarios()
+      .subscribe(
+        (data) => { this.usuarios = data }, 
+        (error) => { console.log(error) });
+  }
 
-  public usuarios = [
-    {nome: "Henrique", email: "email@email.email", dataNascimento: new Date()},
-    {nome: "Fagner", email: "email@email.email", dataNascimento: new Date()},
-    {nome: "Belmiro", email: "email@email.email", dataNascimento: new Date()},
-    {nome: "Gladison", email: "email@email.email", dataNascimento: new Date()},
-    {nome: "Henrique", email: "email@email.email", dataNascimento: new Date()}
-  ];
-
-}
-
-interface Usuario {
-  nome: string;
-  email:string;
-  dataNascimento: Date;
 }

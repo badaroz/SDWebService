@@ -1,9 +1,11 @@
-
-				<div class="loginmodal-container">
-					<h1>Login</h1><br>
-				  <form>
-					<input type="email" name="user" placeholder="Email">
-					<input type="password" name="pass" placeholder="Senha">
-					<input type="submit" name="login" class="login loginmodal-submit" value="Login" (click)="login()">
-				  </form>
-				</div>
+<div class="container-login">
+	<div class="loginmodal-container">
+		<h1>Login</h1><br>
+		<form (ngSubmit)="login()" [formGroup]="formLogin">
+			<input type="email" name="email" formControlName="email" placeholder="Email">
+			<input type="password" name="senha" formControlName="senha" placeholder="Senha">
+			<input type="submit" name="login" class="login loginmodal-submit" value="Login">
+			<a role="button" routerLink="/registrar" class="registrar" routerLinkActive="active"> Registrar </a>
+		</form>
+	</div>
+</div>
