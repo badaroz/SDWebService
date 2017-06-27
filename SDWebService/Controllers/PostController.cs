@@ -16,7 +16,6 @@ namespace SDWebService.Controllers
             var db = new AppContext();
             postRepository = new Repository<Post>(db);
             usuarioRepository = new Repository<Usuario>(db);
-
         }
 
         // GET: Post
@@ -119,17 +118,7 @@ namespace SDWebService.Controllers
             postRepository.SaveChanges();
             return RedirectToAction("Index");
         }
-        //[HttpGet]
-        //public IQueryable<Post> GetByHashTag(string hashTag)
-        //{
-        //    return db.Post.Where(x => x.Conteudo.Contains(hashTag));
-        //}
-        //[HttpGet]
-        //public IQueryable<Post> GetByUser(int idUsuario)
-        //{
-        //    return db.Post.Where(x => x.IdUsuario == idUsuario);
-        //}
-
+          
         protected override void Dispose(bool disposing)
         {
             if (disposing)
