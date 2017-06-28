@@ -14,7 +14,9 @@ export class PostService {
     }
 
     salvarPost(post: Post): Observable<any>{
-        return this.http.post('http://localhost:51256/api/PostApi', JSON.stringify(post))
+        var headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:51256/api/PostApi', JSON.stringify(post),{ headers: headers })
             .map((response: Response) => response.json());
     }
 }

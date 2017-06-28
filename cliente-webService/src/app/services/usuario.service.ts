@@ -14,7 +14,9 @@ export class UsuarioService {
     }
 
     salvarUsuario(usuario: Usuario): Observable<any>{
-        return this.http.post('http://localhost:51256/api/UsuarioApi', JSON.stringify(usuario))
+         var headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+        return this.http.post('http://localhost:51256/api/UsuarioApi', JSON.stringify(usuario),{ headers: headers })
             .map((response: Response) => response.json());
     }
 

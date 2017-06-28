@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
+﻿using System.Data;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using SDWebService.Models;
 using SDWebService.Repository;
+using System.Web.Http.Cors;
 
 namespace SDWebService.Controllers
-{
+{   
     [RoutePrefix("api/UsuarioApi")]
     public class UsuarioApiController : ApiController
     {

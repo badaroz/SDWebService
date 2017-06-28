@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
-
 namespace SDWebService
 {
     public static class WebApiConfig
@@ -14,7 +11,7 @@ namespace SDWebService
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-
+            config.EnableCors();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
