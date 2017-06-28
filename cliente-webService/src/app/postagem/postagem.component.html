@@ -13,7 +13,7 @@
         </tr>
         <tbody>
           <tr *ngFor="let post of postagens">
-            <td>{{ post.IdUsuario }}</td>
+            <td>{{ post.Usuario?.Nome }}</td>
             <td>{{ post.Conteudo }}</td>
           </tr>
         </tbody>

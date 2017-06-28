@@ -9,6 +9,7 @@ using System.Web.Http.Description;
 using SDWebService.Models;
 using SDWebService.Repository;
 using System.Web.Script.Serialization;
+using System.Data.Entity;
 
 namespace SDWebService.Controllers
 {
@@ -18,7 +19,7 @@ namespace SDWebService.Controllers
        
         public IQueryable<Post> Get()
         {
-            return repository.GetAll();
+            return repository.GetAll().Include(x=> x.Usuario);
         }
        
         public IQueryable<Post> GetByHashTag(string hashTag)
