@@ -22,7 +22,7 @@ export class PostagemComponent implements OnInit {
   ngOnInit() {
     this._postService.obtemPosts()
       .subscribe(
-        (data) => { this.postagens = data; }, 
+        (data) => { this.postagens = data;  console.log("posts", data); }, 
         (error) => { console.log(error) }
       );
   }

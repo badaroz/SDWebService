@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using System.Web.Http.Cors;
+
 namespace SDWebService
 {
     public static class WebApiConfig
@@ -11,7 +13,7 @@ namespace SDWebService
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-            config.EnableCors();
+            //config.EnableCors();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
@@ -21,6 +23,11 @@ namespace SDWebService
             //config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
             config.Routes.MapHttpRoute("AngularRedirect", "{.*}", "~/index.html");
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+
+
+            //Allowing CORS
+            var corsAttr = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(corsAttr);
         }
     }
 }

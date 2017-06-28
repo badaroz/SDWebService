@@ -9,14 +9,14 @@ export class PostService {
     constructor(private http: Http) { }
 
     obtemPosts(): Observable<Array<Post>>{
-        return this.http.get('http://localhost:51256/api/PostApi')
+        return this.http.get('http://localhost:51256/api/Posts')
             .map((response: Response) => response.json());
     }
 
     salvarPost(post: Post): Observable<any>{
         var headers = new Headers();
                 headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:51256/api/PostApi', JSON.stringify(post),{ headers: headers })
+        return this.http.post('http://localhost:51256/api/Posts', JSON.stringify(post),{ headers: headers })
             .map((response: Response) => response.json());
     }
 }

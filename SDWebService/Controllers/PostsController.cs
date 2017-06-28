@@ -12,8 +12,7 @@ using System.Web.Script.Serialization;
 
 namespace SDWebService.Controllers
 {
-    [RoutePrefix("api/Post")]
-    public class PostApiController : ApiController
+    public class PostsController : ApiController
     {
         private Repository<Post> repository = new Repository<Post>(new AppContext());
        

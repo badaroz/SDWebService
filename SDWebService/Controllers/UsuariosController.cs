@@ -9,8 +9,7 @@ using System.Web.Http.Cors;
 
 namespace SDWebService.Controllers
 {   
-    [RoutePrefix("api/UsuarioApi")]
-    public class UsuarioApiController : ApiController
+    public class UsuariosController : ApiController
     {
         //private AppContext db = new AppContext();
         private Repository<Usuario> usuarioRepository = new Repository<Usuario>(new AppContext());

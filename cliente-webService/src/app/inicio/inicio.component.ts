@@ -15,6 +15,7 @@ export class InicioComponent implements OnInit {
   post: Post;
   user: Usuario;
   tam = 14;
+  postagens: Array<Post>;
   
   constructor
   (
@@ -26,7 +27,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("currentUser"));
-    this.iniciarPost();
+    this.iniciarPost();    
   }
 
   iniciarPost() {
@@ -60,8 +61,11 @@ export class InicioComponent implements OnInit {
   salvarPost(){
     this._postService.salvarPost(this.post)
       .subscribe(
-        (data) => { console.log("Ok", data); this.iniciarPost()},
-        (error) => { console.error("Error", Error)}  
+        (data) => { 
+          console.log("Ok", data); 
+          this.iniciarPost();
+        },
+        (error) => { console.error("Error", Error); }  
       )
   }
 

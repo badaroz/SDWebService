@@ -9,19 +9,19 @@ export class UsuarioService {
     constructor(private http: Http) { }
 
     obtemUsuarios(): Observable<Array<Usuario>>{
-        return this.http.get('http://localhost:51256/api/UsuarioApi')
+        return this.http.get('http://localhost:51256/api/Usuarios')
             .map((response: Response) => response.json());
     }
 
     salvarUsuario(usuario: Usuario): Observable<any>{
          var headers = new Headers();
                 headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:51256/api/UsuarioApi', JSON.stringify(usuario),{ headers: headers })
+        return this.http.post('http://localhost:51256/api/Usuarios', JSON.stringify(usuario),{ headers: headers })
             .map((response: Response) => response.json());
     }
 
     obtemUltimoUsuarioCadastrado(): Observable<Usuario>{
-        return this.http.get('http://localhost:51256/api/UsuarioApi/GetLast')
+        return this.http.get('http://localhost:51256/api/Usuarios/GetLast')
             .map((response: Response) => response.json());
     }
 }

@@ -1,3 +1,4 @@
+import { PostService } from './../services/post.service';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthenticationService } from './../services/authentication.service';
 import { Router } from '@angular/router';
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   (
     private _formBuilder: FormBuilder,
     private _router: Router,
-    private _authenticationService: AuthenticationService
+    private _authenticationService: AuthenticationService,
+    private _postService: PostService
   ) 
   { 
     this.formLogin = this._formBuilder.group(
@@ -27,8 +29,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   login(){
     this._authenticationService.login(this.formLogin.value);
