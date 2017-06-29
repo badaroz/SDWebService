@@ -1,8 +1,8 @@
 import { Usuario } from './usuario';
 
 export class Post {
-    public id: number;
-    public conteudo: string;
-    public idUsuario: number;
-    public usuario: Usuario;
+    public Id: number;
+    public Conteudo: string;
+    public IdUsuario: number;
+    public Usuario: Usuario;
 }

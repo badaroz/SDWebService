@@ -21,10 +21,11 @@ namespace SDWebService.Controllers
         {
             return repository.GetAll().Include(x=> x.Usuario);
         }
-       
+
+        [Route("api/Usuarios/filtro/{hashTag}")]
         public IQueryable<Post> GetByHashTag(string hashTag)
         {          
-            return repository.GetAll().Where(x => x.Conteudo.Contains("#" + hashTag));
+            return repository.GetAll().Where(x => x.Conteudo.Contains("#" + hashTag)).Include(x => x.Usuario);
         }
 
         public IQueryable<Post> GetByUser(int idUsuario)
@@ -94,6 +95,19 @@ namespace SDWebService.Controllers
          
             return NotFound();
            
+        }
+
+        [Route("api/Usuarios/{id}/Posts")]
+        [ResponseType(typeof(List<Post>))]
+        public IHttpActionResult GetPostsUsuario(int id)
+        {
+
+            var post = repository.GetAll().Where(x => x.IdUsuario == id).Include(x => x.Usuario).ToList<Post>();
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
         }
 
         protected override void Dispose(bool disposing)

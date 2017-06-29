@@ -32,8 +32,17 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login(){
-    this._authenticationService.login(this.formLogin.value);
-    this._router.navigate(['/']);
+    this._authenticationService.login(this.formLogin.value)
+      .subscribe((data) => {
+        if (data) {
+          localStorage.setItem("currentUser", JSON.stringify(data));
+          this._router.navigate(['/']);
+        } else {
+          alert("Não foi possivel realizar login com os dados fornecidos! \n verifique e tente novamente!");
+        }
+      }, (error) => {
+        console.error("Error login:", error);
+      })
   }
 
 }

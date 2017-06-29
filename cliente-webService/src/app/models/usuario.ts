@@ -1,7 +1,7 @@
 export class Usuario {
-    public id: number;
-    public nome: string;
-    public email: string;
-    public senha: string;
-    public dataNascimento: Date;
+    public Id: number;
+    public Nome: string;
+    public Email: string;
+    public Senha: string;
+    public DataNascimento: Date;
 }

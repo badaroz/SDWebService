@@ -1,6 +1,7 @@
 import { Usuario } from './../models/usuario';
 import { UsuarioService } from './../services/usuario.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-usuarios',
@@ -13,7 +14,8 @@ export class UsuariosComponent implements OnInit {
 
   constructor
   (
-    private _usuarioService:UsuarioService
+    private _usuarioService: UsuarioService,
+    private _router: Router
   ) 
   { 
     this.usuarios = new Array<Usuario>();
@@ -24,6 +26,10 @@ export class UsuariosComponent implements OnInit {
       .subscribe(
         (data) => { this.usuarios = data }, 
         (error) => { console.log(error) });
+  }
+
+  detalheUsuario(id: number){
+    this._router.navigateByUrl('/postagens/'+id);
   }
 
 }

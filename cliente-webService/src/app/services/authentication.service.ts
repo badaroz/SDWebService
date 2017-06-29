@@ -7,8 +7,9 @@ import 'rxjs/add/operator/map'
 export class AuthenticationService {
     constructor(private http: Http) { }
 
-    login(user: any) {
-        localStorage.setItem('currentUser', JSON.stringify(user));
+    login(user: any) : Observable<any> {
+        return this.http.get('http://localhost:51256/api/login/' + user.email + "/" + user.senha)
+            .map((response: Response) => response.json());
     }
 
     logout() {

@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: '', component: InicioComponent,
     children : [
       {path:'postagens', component: PostagemComponent},
+      {path:'postagens/:idUsuario', component: PostagemComponent},
       {path:'usuarios', component: UsuariosComponent},
       {path:'usuarios/incluir', component: IncluirUsuarioComponent},
       {path:'usuarios/:id/editar', component: EditarUsuarioComponent},

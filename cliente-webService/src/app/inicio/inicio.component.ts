@@ -15,7 +15,9 @@ export class InicioComponent implements OnInit {
   post: Post;
   user: Usuario;
   tam = 14;
-  postagens: Array<Post>;
+
+  postsFiltro: Array<Post>;
+  filtro: string;
   
   constructor
   (
@@ -26,14 +28,15 @@ export class InicioComponent implements OnInit {
   { }
 
   ngOnInit() {
+    this.postsFiltro = new Array<Post>();
     this.user = JSON.parse(localStorage.getItem("currentUser"));
+    this.filtro = "";
     this.iniciarPost();    
   }
 
   iniciarPost() {
     this.post = new Post();
-    this.post.usuario = this.user;
-    this.post.idUsuario = this.user.id;
+    this.post.IdUsuario = this.user.Id;
   }
 
   mudaFonte(tipo)
@@ -64,9 +67,37 @@ export class InicioComponent implements OnInit {
         (data) => { 
           console.log("Ok", data); 
           this.iniciarPost();
+          this._router.navigate(['/postagens']);
         },
         (error) => { console.error("Error", Error); }  
       )
+  }
+
+  editarUsuario(){
+    this._router.navigate(['/usuarios/' + this.user.Id + '/editar']);
+  }
+
+  filtrar(){
+    if(this.filtro.indexOf('#') > -1){
+      alert("Não é necessário colocar #");
+      return;
+    }
+
+    this._postService.obtemPostsFiltro(this.filtro)
+      .subscribe(
+        (data) => {
+          if (data) {
+            this.postsFiltro = data;
+            if(data.length == 0){
+              alert("Nenhum post encontrado!");
+            }
+          } else {
+            alert("Nenhum post encontrado!");
+          }
+        }, 
+        (error) => {
+          console.log("Error", error);
+        })
   }
 
 }

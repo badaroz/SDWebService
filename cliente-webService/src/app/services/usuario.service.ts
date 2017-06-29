@@ -20,8 +20,20 @@ export class UsuarioService {
             .map((response: Response) => response.json());
     }
 
+    atualizarUsuario(usuario: Usuario): Observable<any>{
+         var headers = new Headers();
+                headers.append('Content-Type', 'application/json');
+        return this.http.put('http://localhost:51256/api/Usuarios/'+usuario.Id, JSON.stringify(usuario),{ headers: headers })
+            .map((response: Response) => response.json());
+    }
+
     obtemUltimoUsuarioCadastrado(): Observable<Usuario>{
         return this.http.get('http://localhost:51256/api/Usuarios/GetLast')
+            .map((response: Response) => response.json());
+    }
+
+    obtemUsuario(id: number): Observable<Usuario>{
+        return this.http.get(`http://localhost:51256/api/Usuarios/${id}`)
             .map((response: Response) => response.json());
     }
 }

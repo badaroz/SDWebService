@@ -18,7 +18,8 @@ namespace SDWebService.Controllers
         {
             return usuarioRepository.GetAll();
         }
-        [Route("GetLast")]
+
+        [Route("api/Usuarios/GetLast")]
         [ResponseType(typeof(Usuario))]
         public IHttpActionResult GetLast()
         {
@@ -100,6 +101,13 @@ namespace SDWebService.Controllers
         private bool UsuarioExists(int id)
         {
             return usuarioRepository.GetAll().Count(e => e.Id == id) > 0;
+        }
+
+        [Route("api/Login/{email}/{senha}")]
+        [ResponseType(typeof(Usuario))]
+        public IHttpActionResult GetLogin(string email, string senha)
+        {
+            return Ok(usuarioRepository.GetAll().Where(x => x.Email == email && x.Senha == senha).FirstOrDefault());
         }
     }
 }
